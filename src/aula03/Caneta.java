@@ -1,11 +1,11 @@
-package aula02;
+package aula03;
 
 public class Caneta {
-    public String modelo;
-    public String cor;
-    private float ponta;
-    protected int carga;
-    protected boolean tampada;
+    String modelo;
+    String cor;
+    float ponta;
+    int carga;
+    boolean tampada;
 
     void mostrarStatus(){
         System.out.print("Essa caneta é modelo: " + this.modelo);
@@ -15,7 +15,7 @@ public class Caneta {
         System.out.println(" e está tampada? " + this.tampada + " ");
     }
 
-   public void rabiscar(){
+    void rabiscar(){
         if(this.tampada == true){
             System.out.println("Erro! Não posso rabiscar :(");
         } else {
