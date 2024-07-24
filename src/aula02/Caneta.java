@@ -5,7 +5,7 @@ public class Caneta {
     public String cor;
     private float ponta;
     protected int carga;
-    protected boolean tampada;
+    private boolean tampada;
 
     void mostrarStatus(){
         System.out.print("Essa caneta é modelo: " + this.modelo);
@@ -17,7 +17,7 @@ public class Caneta {
 
    public void rabiscar(){
         if(this.tampada == true){
-            System.out.println("Erro! Não posso rabiscar :(");
+            System.out.println("Erro! Não posso rabiscar, pois a caneta está tampada :(");
         } else {
         this.carga --;
         String msg = String.format("""
@@ -28,11 +28,13 @@ public class Caneta {
         }
     }
 
-    void tampar(){
+   public void tampar(){  //métodos públicos dão acesso ao atributo privado (tampada)
+
         this.tampada = true;
     }
 
-    void destampar(){
+   public void destampar(){
+
         this.tampada = false;
     }
 }
