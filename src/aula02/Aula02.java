@@ -7,7 +7,7 @@ public class Aula02 {
         caneta1.cor = "Azul";
         //caneta1.ponta = 0.5f;
         caneta1.carga = 80;
-        caneta1.tampada = false;
+        //caneta1.tampada = false;
         caneta1.mostrarStatus();
         caneta1.rabiscar();
     }
