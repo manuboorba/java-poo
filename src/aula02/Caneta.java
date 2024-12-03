@@ -3,9 +3,9 @@ package aula02;
 public class Caneta {
     public String modelo;
     public String cor;
-    private float ponta;
-    protected int carga;
-    private boolean tampada;
+    public float ponta;
+    public int carga;
+    public boolean tampada;
 
     void mostrarStatus(){
         System.out.print("Essa caneta é modelo: " + this.modelo);
