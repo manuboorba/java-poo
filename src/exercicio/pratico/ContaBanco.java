@@ -1,16 +1,19 @@
 package exercicio.pratico;
+import java.util.Scanner;
 
 public class ContaBanco {
     public int numConta;
-    protected String tipo;
+    protected String tipoDeConta;
     private String dono;
     private float saldo;
     private boolean contaAberta;
     public float mensalidade = 10;
 
-    public ContaBanco(int numConta, String tipo, String dono) {
+    Scanner scanner = new Scanner(System.in);
+
+    public ContaBanco(int numConta, String tipoConta, String dono) {
         this.numConta = numConta;
-        this.tipo = tipo;
+        this.tipoDeConta = tipoDeConta;
         this.dono = dono;
         this.saldo = 0;
         this.contaAberta = false;
@@ -19,8 +22,8 @@ public class ContaBanco {
     public int getNumConta() {return this.numConta;}
     public void setNumConta(int numConta) {this.numConta = numConta;}
 
-    public String getTipo() {return this.tipo;}
-    public void setTipo(String tipo) {this.tipo = tipo;}
+    public String getTipoDeConta() {return this.tipoDeConta;}
+    public void setTipoDeConta(String tipoDeConta) {this.tipoDeConta = tipoDeConta;}
 
     public String getDono() {return this.dono;}
     public void setDono(String dono) {this.dono = dono;}
@@ -31,7 +34,17 @@ public class ContaBanco {
     public boolean getStatusConta() {return this.contaAberta;}
     public void setStatusConta(boolean status) {this.contaAberta = contaAberta;}
 
-    public void abrirConta() {this.contaAberta = true;}
+    public void abrirConta() {
+         System.out.println("Que tipo de conta você quer criar? " +
+                 "Digite 'CC' para Conta Corrente e 'CP' para Conta Poupança");
+         String tipoDeConta = scanner.nextLine();
+         if (tipoDeConta == "CP") {
+             System.out.println("Parabéns! Abrindo conta poupança você recebe R$ 150,00");
+             saldo += 150;
+         }
+
+         this.contaAberta = true;}
+
     public void fecharConta() {this.contaAberta = false;}
     public void depositar(float valor) {this.saldo += valor;}
     public void sacar(float valor) {
