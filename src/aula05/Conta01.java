@@ -1,4 +1,4 @@
-package exercicio.pratico;
+package aula05;
 
 public class Conta01 {
     public static void main(String[] args) {

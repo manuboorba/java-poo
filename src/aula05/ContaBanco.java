@@ -1,4 +1,4 @@
-package exercicio.pratico;
+package aula05;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
