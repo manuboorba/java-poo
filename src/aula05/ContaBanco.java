@@ -3,6 +3,8 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 public class ContaBanco {
+
+    //ATRIBUTOS
     //public String numConta;
     protected String tipoDeConta;
     private String dono;
@@ -11,13 +13,16 @@ public class ContaBanco {
     public int mensalidadeCC = 12;
     public int mensalidadeCP = 20;
 
+    //SCANNERS
     Scanner scanner = new Scanner(System.in);
     Scanner doubleScanner = new Scanner(System.in);
 
+    //GERAR NÚMERO ALEATÓRIO PARA A CONTA
     int numeroConta = ThreadLocalRandom.current().nextInt(10000000, 100000000);
     int digitoVerificador = ThreadLocalRandom.current().nextInt(10);
     String numConta = numeroConta + "-" + digitoVerificador;
 
+    //MÉTODO CONSTRUTOR
     public ContaBanco(String dono) {
         //this.numConta = numConta;
         this.tipoDeConta = tipoDeConta;
@@ -26,6 +31,7 @@ public class ContaBanco {
         this.contaAberta = false;
     }
 
+    //MÉTODOS GETTERS E SETTERS
     public String getNumConta() {return this.numConta;}
     public void setNumConta(String numConta) {this.numConta = numConta;}
 
@@ -41,6 +47,7 @@ public class ContaBanco {
     public boolean getStatusConta() {return this.contaAberta;}
     public void setStatusConta(boolean status) {this.contaAberta = status;}
 
+    //MÉTODOS PERSONALIZADOS
     public void abrirConta() {
          System.out.println("Que tipo de conta você quer criar? " +
                  "Digite 'CC' para Conta Corrente e 'CP' para Conta Poupança");
