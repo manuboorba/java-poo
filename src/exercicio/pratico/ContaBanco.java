@@ -8,7 +8,8 @@ public class ContaBanco {
     private String dono;
     private double saldo;
     private boolean contaAberta;
-    public float mensalidade = 10;
+    public int mensalidadeCC = 12;
+    public int mensalidadeCP = 20;
 
     Scanner scanner = new Scanner(System.in);
     Scanner doubleScanner = new Scanner(System.in);
@@ -48,30 +49,36 @@ public class ContaBanco {
              System.out.println("Opção inválida!");
              return;
          }
-         if (tipoDeConta.equals("CP")) {
+         if (getTipoDeConta().equals("CP")) {
              System.out.println("Parabéns! Abrindo conta poupança você recebe R$ 150,00");
-             saldo += 150;
-             System.out.println("Número da sua conta: " + numConta + "\nSaldo: " + saldo);
+             setSaldo(getSaldo() + 150);
+             System.out.println("Número da sua conta: " + getNumConta() + "\nSaldo: " + getSaldo());
          } else {
              System.out.println("Parabéns! Abrindo a conta corrente você recebe R$ 50,00");
-             saldo += 50;
-             System.out.println("Número da sua conta: " + numConta + "\nSaldo: " + saldo);
+             setSaldo(getSaldo() + 50);
+             System.out.println("Número da sua conta: " + getNumConta() + "\nSaldo: " + getSaldo());
          }
-         this.contaAberta = true;
+         setStatusConta(true);
     }
 
     public void fecharConta() {
-        this.contaAberta = false;
-        System.out.println("Conta encerrada com sucesso!");
+        if(getSaldo() > 0){
+            System.out.println("Conta com dinheiro. Retire o valor da conta para poder encerra-la.");
+        }else if (getSaldo() < 0){
+            System.out.println("Conta com pendências, não foi possível encerra-la.");
+        }else {
+            setStatusConta(false);
+            System.out.println("Conta encerrada com sucesso!");
+        }
     }
     public void depositar() {
-        if (!this.contaAberta){
+        if (!getStatusConta()){
             System.out.println("Reative sua conta para prosseguir.");
         } else {
             System.out.println("Qual valor deseja depositar?");
             double valor = doubleScanner.nextDouble();
-            this.saldo += valor;
-            System.out.println("Depósito feito com sucesso! Seu novo salvo é: " + saldo);
+            setSaldo(getSaldo() + valor);
+            System.out.println("Depósito feito com sucesso! Seu novo salvo é: " + getSaldo());
         }
     }
 
@@ -80,14 +87,32 @@ public class ContaBanco {
             System.out.println("Reative sua conta para prosseguir.");
             return;
         }
-        if (valor <= saldo){
+        if (valor <= getSaldo()){
             System.out.println("Saque feito com sucesso!");
-            saldo -= valor;
-            System.out.println("Novo saldo: " + saldo);
+            setSaldo(getSaldo() - valor);
+            System.out.println("Novo saldo: " + getSaldo());
         } else{
             System.out.println("Saldo insuficiente!");
         }
     }
-    public void pagarMensalidade() {this.saldo -= mensalidade;}
+    public void pagarMensalidade() {
+        if(!getStatusConta()){
+            System.out.println("A conta não existe ou foi encerrada, entre em contato com o suporte para prosseguir.");
+            return;
+        }
+        if(Objects.equals(getTipoDeConta(), "CC") && getSaldo() < mensalidadeCC){
+            System.out.println("Saldo insuficiente!");
+        }else if(Objects.equals(getTipoDeConta(), "CP") && getSaldo() < mensalidadeCP){
+            System.out.println("Saldo insuficiente!");
+            return;
+        }
+        if(Objects.equals(getTipoDeConta(), "CC") && getSaldo() > mensalidadeCC){
+            setSaldo(getSaldo() - mensalidadeCC);
+            System.out.println("Mensalidade paga com sucesso! \n Novo saldo: " + getSaldo());
+        }else{
+            setSaldo(getSaldo() - mensalidadeCP);
+            System.out.println("Mensalidade paga com sucesso! \n Novo saldo: " + getSaldo());
+        }
+    }
 }
 
