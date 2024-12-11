@@ -56,7 +56,7 @@ public class ContaBanco {
              System.out.println("Opção inválida!");
              return;
          }
-         if (getTipoDeConta().equals("CP")) {
+         if (Objects.equals(tipoDeConta, "CP")) {
              System.out.println("Parabéns! Abrindo conta poupança você recebe R$ 150,00");
              setSaldo(getSaldo() + 150);
              System.out.println("Número da sua conta: " + getNumConta() + "\nSaldo: " + getSaldo());
